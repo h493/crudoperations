@@ -14,4 +14,20 @@ public class CRUDService {
     public void createSuperhero(Characters superHero){
         superHeroRepository.save(superHero);
     }
+
+    public Characters readSuperHeroById(int val){
+        return superHeroRepository.findById(val).get();
+    }
+
+    public void updateSuperHeroName(Characters superHero, int id){
+        Characters superHeroToBeUpdated = readSuperHeroById(id);
+        superHeroToBeUpdated.setName(superHero.getName());
+
+        createSuperhero(superHeroToBeUpdated);
+
+    }
+
+    public void deleteById(int id){
+        superHeroRepository.deleteById(id);
+    }
 }
